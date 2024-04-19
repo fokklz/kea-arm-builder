@@ -1,0 +1,12 @@
+beautifulsoup4==4.12.3
+certifi==2024.2.2
+charset-normalizer==3.3.2
+idna==3.7
+packaging==24.0
+python-dotenv==1.0.1
+requests==2.31.0
+soupsieve==2.5
+types-beautifulsoup4==4.12.0.20240229
+types-html5lib==1.1.11.20240228
+types-requests==2.31.0.20240406
+urllib3==2.2.1
