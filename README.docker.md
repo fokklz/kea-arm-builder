@@ -58,3 +58,4 @@ For a detailed overview of the Kea DHCP server, visit the [ISC's official Kea pa
 ## Caviats
 
 - The versions `2.0.0`, `2.0.1` and `2.0.2` do not include the supervisor since i forgot to include it in the build process. Add it with `apk add supervisor` in your Dockerfile if you plan to use those versions. Also the binaries are not linked to the `/usr/sbin` folder, you will need to do that manually or use `/usr/local/sbin/` instead. Any common directories are also not created.
+- Up to and including version `2.0.3`, there was no `kea` user created in the image. You will need to create it manually if you plan to use those versions. The `2.0.4` version and above include the `kea` user. (ensure to also set the correct permissions on the directories)
