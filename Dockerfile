@@ -38,7 +38,7 @@ RUN apk add --no-cache libpq log4cplus boost tzdata openntpd postgresql-client s
     # Remove the example config file for supervisor
     && rm -f /etc/supervisord.conf \
     # Create commmonly used directories
-    && mkdir -p /etc/supervisor/conf.d /etc/kea /var/log/supervisor /var/log/kea \
+    && mkdir -p /etc/supervisor/conf.d /etc/kea /var/log/supervisor /var/log/kea /var/lib/kea /run/kea \
     # Create a symlink for the Kea binaries (to work with the example config files)
     && ln -s /usr/local/sbin/kea-dhcp4 /usr/sbin/kea-dhcp4 \
     && ln -s /usr/local/sbin/kea-dhcp6 /usr/sbin/kea-dhcp6 \
@@ -46,4 +46,4 @@ RUN apk add --no-cache libpq log4cplus boost tzdata openntpd postgresql-client s
     && ln -s /usr/local/sbin/kea-admin /usr/sbin/kea-admin \
     && ln -s /usr/local/sbin/kea-dhcp-ddns /usr/sbin/kea-dhcp-ddns \
     # give access to the kea user for the commonly used directories
-    && chown -R kea:kea /etc/kea /var/log/kea /usr/local
+    && chown -R kea:kea /etc/kea /var/log/kea /usr/local /var/lib/kea /run/kea

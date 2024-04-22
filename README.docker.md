@@ -29,7 +29,8 @@ The following directories are created in the image, **not populated with any fil
 - `/var/log/supervisor`	
 - `/etc/kea`
 - `/var/log/kea`
-
+- `/var/lib/kea`
+- `/run/kea`
 
 Example configuration files are located in `/usr/local/etc/kea` inside the container. Or at [ISC's Kea Docker repository](https://gitlab.isc.org/isc-projects/kea-docker)
 
@@ -53,9 +54,14 @@ FROM fokklz/kea-base:latest
 
 For a detailed overview of the Kea DHCP server, visit the [ISC's official Kea page](https://www.isc.org/kea/).
 
-**Note**: A version table is provided near the end of that page.
+**Note**: A version table is provided near the end of that page. 
+
+Ensure to check that it outputs
+`DCTL_STARTING Control-agent starting, pid: ?, version: x.x.x (stable)`
+~ `x` ofc being the version you are using.
 
 ## Caviats
 
 - The versions `2.0.0`, `2.0.1` and `2.0.2` do not include the supervisor since i forgot to include it in the build process. Add it with `apk add supervisor` in your Dockerfile if you plan to use those versions. Also the binaries are not linked to the `/usr/sbin` folder, you will need to do that manually or use `/usr/local/sbin/` instead. Any common directories are also not created.
 - Up to and including version `2.0.3`, there was no `kea` user created in the image. You will need to create it manually if you plan to use those versions. ensure to also set the correct permissions on the directories. [how i did it](https://github.com/fokklz/kea-arm-builder/blob/b26dc3ebbfc76d46b2ab65befd8920c19b0192d0/Dockerfile#L49)
+- Up to and including version `2.1.7`, the `/var/lib/kea` and `/run/kea` directories were not created in the image. You will need to create them manually if you plan to use those versions. Remember to also set the correct permissions on the directories for the `kea` user.
